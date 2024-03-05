@@ -1,5 +1,3 @@
-
-
 import regex as re
 import speech_recognition as sr
 from func import get_time, get_phrase, all_phrase_banks
