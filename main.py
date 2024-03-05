@@ -42,15 +42,11 @@ def callback(recgonizer, audio):
         last = f"It is currently {get_time()}"
         tts(last)
         return
-    if re.search(r"(^(Could|What did) you (repeat|say)\??$|Pardon\?){e<=2}", voice):
+    if re.search(r"(^pardon$|(could|what (did|was that))\s*(you (repeat|say))?){e<=2}", voice):
         if last == "":
             last = "I haven't said anything yet. "
         tts(last)
         return
-    if re.search(r"(^run through the word bank$){e<=2}", voice):
-        phrases = all_phrase_banks(["Phrase Bank/goodbye.txt", "Phrase Bank/intro.txt"])
-        for phrase in phrases:
-            tts(phrase)
 
 
 r = sr.Recognizer()
