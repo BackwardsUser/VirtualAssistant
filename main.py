@@ -8,11 +8,15 @@ f = open("token.txt")
 token = f.readline()
 
 voices = [
-    [ "George" ],
-    [ "Female" ]
+    [
+        [ "George", "eleven_multilingual_v2" ]
+    ],
+    [
+        [ "Alice", "eleven_turbo_v2" ]
+    ]
 ]
 
-def tts(text="Sorry, it seems I've forgotten what I was going to say.."):
+def tts(text="Sorry, it seems I've forgotten what I was going to say..")
     audio = generate(
         api_key=token,
         text=text,
@@ -22,15 +26,18 @@ def tts(text="Sorry, it seems I've forgotten what I was going to say.."):
 
     play(audio)
 
+    return text
+
 
 Running = True
 
 
 def callback(recgonizer, audio):
     global Running
+    print("Voice detected")
+    print("Running voice through recognizer.")
     voice = r.recognize_sphinx(audio)
     print("Heard: " + voice)
-    print("voice detected")
 
     last = ""
 
@@ -39,12 +46,10 @@ def callback(recgonizer, audio):
         stop_listening(wait_for_stop=False)
         Running = False
     if re.search(r"(^((what'?s?)|(how'?s?)).*(weather)){e<=2}", voice):
-        last = get_weather()
-        tts(last)
+        last =tts(get_weather())
         return
     if re.search(r"(^(what'?s?).*(time).*){e<=2}", voice):
-        last = f"It is currently {get_time()}"
-        tts(last)
+        last = tts(f"It is currently {get_time()}")
         return
     if re.search(r"(^pardon$|(could|what (did|was that))\s*(you (repeat|say))?){e<=2}", voice):
         if last == "":
