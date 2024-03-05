@@ -7,12 +7,16 @@ from elevenlabs import generate, play
 f = open("token.txt")
 token = f.readline()
 
+voices = [
+    [ "George" ],
+    [ "Female" ]
+]
 
 def tts(text="Sorry, it seems I've forgotten what I was going to say.."):
     audio = generate(
         api_key=token,
         text=text,
-        voice="Alice",
+        voice=voice[1][0],
         model="eleven_turbo_v2"
     )
 
