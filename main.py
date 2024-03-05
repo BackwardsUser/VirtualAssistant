@@ -16,7 +16,7 @@ voices = [
     ]
 ]
 
-def tts(text="Sorry, it seems I've forgotten what I was going to say..")
+def tts(text="Sorry, it seems I've forgotten what I was going to say.."):
     audio = generate(
         api_key=token,
         text=text,
